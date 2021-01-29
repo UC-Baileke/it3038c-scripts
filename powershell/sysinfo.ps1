@@ -6,6 +6,12 @@ function getIP {
 }
 
 write-host(getIP)
+$todaysdate = Get-Date
+$hostversion = $host.Version.major
 $IP = getIP
-Write-Host("This machines IP is $IP")
-Write-Host("This machine's IP is {0}" -f $IP)
+$Date = ""
+$Body = "This machines's IP is $IP. User is $env:username. Hostname is $env:computername. Powershell Version is $hostversion. Today's date is $todaysdate"
+
+write-host($body)
+
+#send-MailMessage -To "Baileke@ucmail.uc.edu" -From "Baileycru34@gmail.com" -Subject "IT3038c Windows SysInfo" -Body $Body -SmtpServer smtp.google.com -port 587 -UseSSL -Credential (Get-Credential)
